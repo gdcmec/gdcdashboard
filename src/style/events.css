@@ -1,0 +1,145 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+  }
+  
+  li {
+    display: flex;
+    border: 1px solid black;
+    padding: 8px;
+    margin: 10px;
+    background-color: rgba(193, 189, 189, 0.492);
+    /* width: auto; */
+  }
+
+  .heading{
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+    margin: auto;
+    border-radius: 2px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    color: white;
+    background-color: black;
+  }
+  .main{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Optional: set a maximum width for the form */
+    margin: auto;
+  }
+
+  .singleevent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+  }
+
+  /* @media (max-width: 768px) {
+    .singleevent {
+      flex-direction: column;
+      
+    }
+    .eventtext{        
+        padding-right: auto;             
+     }
+   .ed{
+    margin-bottom: 5px;
+   }
+  } */
+
+  .eventtext{
+     
+     padding-right: auto;
+    
+    flex: 1; 
+    
+  }
+
+  .ed{
+    padding: 5px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-right: 15px;
+    color: white;
+    background-color: black;
+    margin-left: 10px;
+  }
+  .ed:hover,.del:hover{
+    color: black;
+    background-color: white;
+    cursor: pointer;
+  }
+  .del{
+    padding: 5px;
+    padding-left: 52px;
+    padding-right: 52px;
+    margin-right: 10px;
+    color: white;
+    background-color: black;
+    /* margin-left: 10px; */
+  }
+
+  .add-event{
+    margin-bottom: 20px;
+  }
+  .add-icon-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto; 
+    padding-right: 20px;
+    width: 20px; 
+  }
+  
+  .add-icon {
+    width: 100%; 
+    height: 25px;
+  }
+
+  .add-plus{
+    border-color: 1px solid white;
+  }
+  
+  .add{
+    background-color:rgba(193, 189, 189, 0.492);
+    border-radius: 80px;
+    border-color: rgba(193, 189, 189, 0.492);
+  }
+
+  .add:hover{
+    color: white;
+    background-color: black;
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    .heading {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .ed{
+      padding: 5px;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-right: 15px;
+      margin-left: 10px;
+    }
+    .del{
+      padding: 5px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-right: 15px;
+      margin-left: 10px;
+    }
+  }

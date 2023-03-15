@@ -145,3 +145,9 @@
 .img{
   margin-right: 24px;
 }
+
+.button:hover{
+color: black;
+background-color: white;
+cursor: pointer;
+}

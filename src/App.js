@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./style/index.css";
+import "./App.css"
+import EventList from "./pages/EventList";
 import AddEvents from "./pages/AddEvents";
 
 function App() {
@@ -22,9 +24,11 @@ function App() {
             }
           />
           <Route path="/events" element={<div className={!navVisible ? "page" : "page page-with-navbar"}>
+                <EventList/>
+              </div>} />
+              <Route path="/addevent" element={<div className={!navVisible ? "page" : "page page-with-navbar"}>
                 <AddEvents/>
               </div>} />
-          
           
         </Routes>
       </div>
