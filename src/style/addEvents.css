@@ -32,7 +32,7 @@
 .input1{
   border: none;
   border-radius: 3px;
-  margin-left: 49px;
+  margin-left: 53px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -58,14 +58,14 @@
   outline: none;
   border: none;
   border-radius: 3px;
-  margin-left: 49px;
-  height: 90px;
+  margin-left: 54px;
+  height: 100px;
   width: 60%;
 }
 .input2{
   border: none;
   border-radius: 3px;
-  margin-left: 55px;
+  margin-left: 61.7px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -74,7 +74,7 @@
 .input3{
   border: none;
   border-radius: 3px;
-  margin-left: 30px;
+  margin-left: 34px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -83,16 +83,19 @@
 .input4{
   border: none;
   border-radius: 3px;
-  margin-left: 16px;
+  margin-left: 18px;
   width: 50%;
   line-height: 25px;
   outline: none;
   
 }
+.last{
+  display: flex;
+}
 .input5{
   border: none;
   border-radius: 3px;
-  margin-left: 55px;
+  margin-left: 61px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -103,35 +106,38 @@
     padding: 10px;
   }
   .input1, .input2, .input3, .input4, .input5 {
-    width: 50%;
+    width: 45%;
   }
   .input1{
-    margin-left: 35px;
+    margin-left: 59.5px;
   }
   .input2{
-    margin-left: 42px;
+    margin-left: 66.8px;
   }
   .input3{
-    margin-left: 18px;
+    margin-left: 38.9px;
   }
-  .input4{ /*reg*/
-    margin-left: 5px;
+  .input4{
+    margin-left: 22.5px;
   }
   .input5{
-    margin-left: 42px;
+    margin-left: 67.2px;
+
   }
   
   #message{
-    margin-left:20px;
+    margin-left:10px;
     
   }
   .main{
     width:350px;
   }
   #image{
-    padding-left:37%;
+    margin-left: 30px;
   }
-  
+  .last{
+    display: flex;
+  }
 }
 
 @media (max-width: 480px) {
@@ -143,8 +149,8 @@
     width: 100%;
   }
 }
-.img{
-  margin-right: 35px;
+#image{
+  margin-left: 95px;
 }
 
 .button:hover{

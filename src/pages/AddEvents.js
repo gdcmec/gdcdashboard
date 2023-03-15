@@ -65,8 +65,11 @@ import { useState } from "react";
         <textarea id="message" type="text" name="desc" onChange={handleChange}/>
       </div>
       <div className="row">
-      <label for="image" className="img">Upload image:</label>
+        <div className="last">
+        <label for="image" className="img">Image:</label>
       <input type="file" id="image" name="image" onChange={handleChange}/>
+        </div>
+      
       </div>
       
 
