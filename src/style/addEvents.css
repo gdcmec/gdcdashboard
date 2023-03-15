@@ -32,7 +32,7 @@
 .input1{
   border: none;
   border-radius: 3px;
-  margin-left: 53px;
+  margin-left: 53.5px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -65,7 +65,7 @@
 .input2{
   border: none;
   border-radius: 3px;
-  margin-left: 61.7px;
+  margin-left: 61.1px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -74,7 +74,7 @@
 .input3{
   border: none;
   border-radius: 3px;
-  margin-left: 34px;
+  margin-left: 33px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -83,7 +83,7 @@
 .input4{
   border: none;
   border-radius: 3px;
-  margin-left: 18px;
+  margin-left: 17.7px;
   width: 50%;
   line-height: 25px;
   outline: none;
@@ -95,13 +95,13 @@
 .input5{
   border: none;
   border-radius: 3px;
-  margin-left: 61px;
+  margin-left: 61.3px;
   width: 50%;
   line-height: 25px;
   outline: none;
   
 }
-@media (max-width: 750px) {
+@media (max-width: 850px) {
   .form {
     padding: 10px;
   }

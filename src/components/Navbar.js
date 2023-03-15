@@ -6,7 +6,6 @@ import {
 import { NavLink } from "react-router-dom";
 import "../style/navbar.css";
 
-const ICON_SIZE = 20;
 
 function Navbar({ visible, show }) {
   return (
