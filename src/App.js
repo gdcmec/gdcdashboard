@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./style/index.css";
+import AddEvents from "./pages/AddEvents";
 
 function App() {
   const [navVisible, showNavbar] = useState(false);
@@ -20,30 +21,11 @@ function App() {
               </div>
             }
           />
-          <Route
-            path="/events"
-            element={
-              <div className={!navVisible ? "page" : "page page-with-navbar"}>
-                <h1>Events</h1>
-              </div>
-            }
-          />
-          <Route
-            path="/orders"
-            element={
-              <div className={!navVisible ? "page" : "page page-with-navbar"}>
-                <h1>Orders</h1>
-              </div>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <div className={!navVisible ? "page" : "page page-with-navbar"}>
-                <h1>Settings</h1>
-              </div>
-            }
-          />
+          <Route path="/events" element={<div className={!navVisible ? "page" : "page page-with-navbar"}>
+                <AddEvents/>
+              </div>} />
+          
+          
         </Routes>
       </div>
     </BrowserRouter>

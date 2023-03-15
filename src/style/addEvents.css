@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+.heading{
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  margin: auto;
+  border-radius: 2px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: large;
+  color: white;
+  background-color: black;
+}
+.main{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 750px; /* Optional: set a maximum width for the form */
+  margin: auto;
+}
+.form{
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: rgba(193,189,189,0.492);
+}
+.input1{
+  border: none;
+  border-radius: 3px;
+  margin-left: 45px;
+  width: 50%;
+  line-height: 25px;
+  outline: none;
+  
+}
+.row{
+  margin-top: 15px;
+}
+
+.btn{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 20px;
+}
+.button{
+  background-color: black;
+  color: white;
+  width: 25%;
+  padding: 5px;
+}
+#message{
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  margin-left: 45px;
+  height: 90px;
+  width: 60%;
+}
+.input2{
+  border: none;
+  border-radius: 3px;
+  margin-left: 55px;
+  width: 50%;
+  line-height: 25px;
+  outline: none;
+  
+}
+.input3{
+  border: none;
+  border-radius: 3px;
+  margin-left: 25px;
+  width: 50%;
+  line-height: 25px;
+  outline: none;
+  
+}
+.input4{
+  border: none;
+  border-radius: 3px;
+  margin-left: 10px;
+  width: 50%;
+  line-height: 25px;
+  outline: none;
+  
+}
+.input5{
+  border: none;
+  border-radius: 3px;
+  margin-left: 55px;
+  width: 50%;
+  line-height: 25px;
+  outline: none;
+  
+}
+@media (max-width: 750px) {
+  .form {
+    padding: 10px;
+  }
+  .input1, .input2, .input3, .input4, .input5 {
+    width: 50%;
+  }
+  .input1{
+    margin-left: 35px;
+  }
+  .input2{
+    margin-left: 44px;
+  }
+  .input3{
+    margin-left: 15px;
+  }
+  .input4{
+    margin-left: 0px;
+  }
+  .input5{
+    margin-left: 44px;
+  }
+  
+  #message{
+    margin-left:10px;
+    
+  }
+  .main{
+    width:350px;
+  }
+  #image{
+    padding-left:37%;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .input1, .input2, .input3, .input4, .input5 {
+    width: 100%;
+  }
+}
+.img{
+  margin-right: 24px;
+}

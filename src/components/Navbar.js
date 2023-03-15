@@ -1,10 +1,7 @@
 import React from "react";
 import {
   FaAngleRight,
-  FaAngleLeft,
-  FaChartBar,
-  FaThLarge,
-  FaSignOutAlt,
+  FaAngleLeft
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "../style/navbar.css";
@@ -25,17 +22,17 @@ function Navbar({ visible, show }) {
         <div>
           <div className="links nav-top">
             <NavLink to="/dashboard" className="nav-link">
-              <FaThLarge size={ICON_SIZE} />
+              
               <span>Dashboard</span>
             </NavLink>
             <NavLink to="/events" className="nav-link">
-              <FaChartBar size={ICON_SIZE} />
+              
               <span>Events </span>
             </NavLink>
           </div>
           <div className="links">
             <NavLink to="/Sign-out" className="nav-link">
-              <FaSignOutAlt size={ICON_SIZE} />
+             
               <span>Logout</span>
             </NavLink>
           </div>
