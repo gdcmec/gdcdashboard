@@ -5,6 +5,7 @@ import "./style/index.css";
 import "./App.css"
 import EventList from "./pages/EventList";
 import AddEvents from "./pages/AddEvents";
+import EditEvent from "./pages/EditEvent";
 
 function App() {
   const [navVisible, showNavbar] = useState(false);
@@ -29,6 +30,10 @@ function App() {
               <Route path="/addevent" element={<div className={!navVisible ? "page" : "page page-with-navbar"}>
                 <AddEvents/>
               </div>} />
+
+              <Route path="/editevent" element = {<div className = {!navVisible ? "page" : "page page-with-navbar"}>
+                <EditEvent/>
+              </div>}> </Route>
           
         </Routes>
       </div>

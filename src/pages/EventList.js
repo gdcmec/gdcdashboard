@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react'
- import { Link } from "react-router-dom";
+import React, { useEffect, useState , } from 'react'
+import { Link } from "react-router-dom";
 import '../style/events.css'
  import { ReactComponent as PlusIcon } from '../plus-icon.svg';
 // // import './plus-icon.svg';
 // import { FaPlus } from 'react-icons/fa';
+ 
 
 
 const EventList = (ename,handleDelete,handleEdit,handleAdd) => {
   //  const[events,setEvents]=useState([])
     const eventlist=[{
-       ename:"Lord Of Code"
+       id   :"6413081a741eb97979e4a7eb",
+       title:"Lord Of Code"
           },
    {
-       ename:"Devcraft"
+       title:"Devcraft"
    },
    {
-       ename:"4X120"
+       title:"4X120"
    },
    {
-       ename:"TechnoHack"
+       title:"TechnoHack"
    }
    ]
   
@@ -48,9 +50,13 @@ Events
       {eventlist.map((e) => (
         <li className="singleevent">
           <span className="eventtext" key={e.id}>
-            {e.ename}
+            {e.title}
           </span>
-          <button className='ed' onClick={() => handleEdit(e.id)}>Edit</button>
+            <Link to="/editevent" state={{events : e}}>
+          <button className='ed' >
+            Edit
+            </button>
+            </Link>
           <button className='del' onClick={() => handleDelete(e.id)}>Delete</button>
         </li>
       ))}
