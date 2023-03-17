@@ -5,64 +5,59 @@ import { useState } from "react";
 
 // const AddEvents = ({ visible, show }) => {
   const AddEvents = () => {
-  
-    const [inputs,setInputs]=useState({
-      input1:"",
-      input5:"",
-      input2:"",
-      input3:"",
-      input4:"",
-      desc:"",
-      image:""
+    
+    const [event,setEvent]=useState({
     })
   
     //  const [error,setError]= useState(null)  
   
     const handleSubmit= async (e) =>{  
       e.preventDefault()   
-      // try{
-         await axios.post("/event/:id",inputs) 
-      // }catch(err){
-      //   setError(err.response.data);
-      // }
+
+        await axios.post("http://localhost:3000/cms/events/new",{event: event})
+        .then(res=>{
+          console.log(res)
+        }
+        )
+      
     }
     
     const handleChange = e=>{
-    setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
+    setEvent(prev=>({...prev,[e.target.name]:e.target.value}))
     }
   return (
    <div className="main" >
     <div className="heading">
-      Add/Update Events
+      Add/Update event
     </div>
     <div className="form">
     <form >
       <div>
-    <div >
+      <div >
         <label className="label">Event name:</label>
-        <input className="input1" name="input1" type="text" onChange={handleChange}/>
+        <input className="name" name="title" type="text" value= {event.title} onChange={handleChange}/>
       </div>
       <div className="row">
         <label className="label">Event date:</label>
-        <input className="input5" name="input5" type="date" onChange={handleChange}/>
+        <input className="date" name="date" type="date" value= {event.date} onChange={handleChange}/>
       </div>
       
       <div className="row">
         <label className="label">Event time:</label>
-        <input className="input2" name="input2" type="time" onChange={handleChange}/>
+        <input className="time" name="time" type="time" value={event.time} onChange={handleChange}/>
       </div>
       
       <div className="row">
         <label className="label">Event location:</label>
-        <input className="input3" name="input3" type="text" onChange={handleChange}/>
+        <input className="venue" name="venue" type="text" value={event.venue} onChange={handleChange}/>
       </div>
       <div className="row">
         <label className="label">Registration link:</label>
-        <input className="input4" name="input4" type="url" onChange={handleChange}/>
+        <input className="registrationLink" name="registrationLink" type="url" value={event.registrationLink} onChange={handleChange}/>
       </div>
       <div className="row">
         <label className="label">Description:</label>
-        <textarea id="message" type="text" name="desc" onChange={handleChange}/>
+        <textarea id="message" type="text" name="description" value={event.description} onChange={handleChange}/>
       </div>
       <div className="row">
         <div className="last">

@@ -1,28 +1,39 @@
-import React, { useEffect, useState , } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import '../style/events.css'
  import { ReactComponent as PlusIcon } from '../plus-icon.svg';
+import axios from 'axios';
 // // import './plus-icon.svg';
 // import { FaPlus } from 'react-icons/fa';
  
+const handleDelete = async (id) => {
+  try {
+
+    await axios.get(`http://localhost:3000/cms/events/delete/${id}`);
+    window.location.reload();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
-const EventList = (ename,handleDelete,handleEdit,handleAdd) => {
+const EventList = () => {
+
+    const [eventlist,setEventlist] = useState([{}])
+    const [loading,setLoading] = useState(true)
+  useEffect(() => {
+    setLoading(true)
+      axios.get("http://localhost:3000/cms/events/get")
+        .then((res) => {
+        setEventlist(res.data)
+        setLoading(false)
+      }
+      )
+      
+  }, [])
+
   //  const[events,setEvents]=useState([])
-    const eventlist=[{
-       id   :"6413081a741eb97979e4a7eb",
-       title:"Lord Of Code"
-          },
-   {
-       title:"Devcraft"
-   },
-   {
-       title:"4X120"
-   },
-   {
-       title:"TechnoHack"
-   }
-   ]
+    
   
    // useEffect(async()=>{
 //   try{
@@ -34,20 +45,23 @@ const EventList = (ename,handleDelete,handleEdit,handleAdd) => {
 // },[])
 
   return (
+loading ? <div>Loading...</div> :
     <div className='main'>
       <div className="heading">
 Events
 </div>
     <ul className="allevents">
-        <li className="add-event" onClick={handleAdd}>
+        <li className="add-event">
         <div className="add-plus">
         <Link to="/addevent" >
-           <button className='add' onClick={() => handleAdd()}><PlusIcon className="add-icon" /></button>
+           <button className='add' ><PlusIcon className="add-icon" /></button>
          </Link>
           </div>
       </li>
-      
-      {eventlist.map((e) => (
+    {
+        
+      eventlist.length > 0 &&
+      eventlist.map((e) => (
         <li className="singleevent">
           <span className="eventtext" key={e.id}>
             {e.title}
@@ -57,7 +71,7 @@ Events
             Edit
             </button>
             </Link>
-          <button className='del' onClick={() => handleDelete(e.id)}>Delete</button>
+          <button className='del' onClick={() => handleDelete(e._id)}>Delete</button>
         </li>
       ))}
     </ul>
