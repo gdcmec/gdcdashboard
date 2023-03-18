@@ -7,6 +7,7 @@ import EventList from "./pages/EventList";
 import AddEvents from "./pages/AddEvents";
 import EditEvent from "./pages/EditEvent";
 import AddMember from "./pages/AddMember";
+import MemberList from "./pages/MemberList";
 
 function App() {
   const [navVisible, showNavbar] = useState(false);
@@ -34,6 +35,12 @@ function App() {
 
               <Route path="/editevent" element = {<div className = {!navVisible ? "page" : "page page-with-navbar"}>
                 <EditEvent/>
+              </div>}> </Route>
+              <Route path="/members" element = {<div className = {!navVisible ? "page" : "page page-with-navbar"}>
+                <MemberList/>
+              </div>}> </Route>
+              <Route path="/addmember" element = {<div className = {!navVisible ? "page" : "page page-with-navbar"}>
+                <AddMember/>
               </div>}> </Route>
           
         </Routes>
