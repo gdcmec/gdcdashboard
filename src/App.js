@@ -6,6 +6,7 @@ import "./App.css"
 import EventList from "./pages/EventList";
 import AddEvents from "./pages/AddEvents";
 import EditEvent from "./pages/EditEvent";
+import AddMember from "./pages/AddMember";
 
 function App() {
   const [navVisible, showNavbar] = useState(false);
