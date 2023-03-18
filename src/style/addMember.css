@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+.mName{
+  margin-left: 15px;
+  width: 45%;
+  border: 0em;
+  border-radius: 5px;
+  outline: none;
+  height: 23px;
+}
+.team{
+  margin-left: 15px;
+  width: 45%;
+  border: 0em;
+  border-radius: 5px;
+  outline: none;
+  height: 23px;
+}
+.position{
+  margin-left: 15px;
+  width: 45%;
+  border: 0em;
+  border-radius: 5px;
+  outline: none;
+  height: 23px;
+}
+.link{
+  margin-left: 15px;
+  width: 45%;
+  border: 0em;
+  border-radius: 5px;
+  outline: none;
+  height: 23px;
+}
+.heading{
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  margin: auto;
+  border-radius: 2px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: large;
+  color: white;
+  background-color: black;
+}
+.main{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 750px; /* Optional: set a maximum width for the form */
+  margin: auto;
+}
+.form{
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: rgba(193,189,189,0.492);
+}
+
+.row{
+  margin-top: 15px;
+}
+
+.btn{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 35px;
+}
+.button{
+  background-color: black;
+  color: white;
+  width: 25%;
+  padding: 5px;
+}
+
+.image{
+  margin-left: 15px;
+  width: 45%;
+  outline: none;
+}
+
+@media (max-width: 850px) {
+  .form {
+    padding: 10px;
+  }
+  .mName, .team, .position, .link, .image {
+    width: 45%;
+  }
+  
+  
+  
+  .main{
+    width:350px;
+  }
+ 
+}
+
+@media (max-width: 480px) {
+  .heading {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+}
+
+.button:hover{
+color: black;
+background-color: white;
+cursor: pointer;
+}

@@ -29,7 +29,7 @@
   padding: 20px;
   background-color: rgba(193,189,189,0.492);
 }
-.input1{
+.name{
   border: none;
   border-radius: 3px;
   margin-left: 53.5px;
@@ -62,7 +62,7 @@
   height: 100px;
   width: 60%;
 }
-.input2{
+.time{
   border: none;
   border-radius: 3px;
   margin-left: 61.1px;
@@ -71,7 +71,7 @@
   outline: none;
   
 }
-.input3{
+.venue{
   border: none;
   border-radius: 3px;
   margin-left: 33px;
@@ -80,7 +80,7 @@
   outline: none;
   
 }
-.input4{
+.registrationLink{
   border: none;
   border-radius: 3px;
   margin-left: 17.7px;
@@ -92,7 +92,7 @@
 .last{
   display: flex;
 }
-.input5{
+.date{
   border: none;
   border-radius: 3px;
   margin-left: 61.3px;
@@ -105,7 +105,7 @@
   .form {
     padding: 10px;
   }
-  .input1, .input2, .input3, .input4, .input5 {
+  .name, .time, .venue, .registrationLink, .date {
     width: 45%;
   }
   .input1{
