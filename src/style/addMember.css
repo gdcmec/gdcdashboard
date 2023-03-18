@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .mName{
-  margin-left: 15px;
+  margin-left: 65px;
   width: 45%;
   border: 0em;
   border-radius: 5px;
@@ -10,7 +10,7 @@
   height: 23px;
 }
 .team{
-  margin-left: 15px;
+  margin-left: 70px;
   width: 45%;
   border: 0em;
   border-radius: 5px;
@@ -18,7 +18,7 @@
   height: 23px;
 }
 .position{
-  margin-left: 15px;
+  margin-left: 50px;
   width: 45%;
   border: 0em;
   border-radius: 5px;
@@ -26,7 +26,7 @@
   height: 23px;
 }
 .link{
-  margin-left: 15px;
+  margin-left: 18px;
   width: 45%;
   border: 0em;
   border-radius: 5px;
@@ -80,7 +80,7 @@
 }
 
 .image{
-  margin-left: 15px;
+  margin-left: 65px;
   width: 45%;
   outline: none;
 }
