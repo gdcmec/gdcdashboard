@@ -14,15 +14,13 @@ import { useState } from "react";
     const handleSubmit= async (e) =>{  
       e.preventDefault()   
 
-        /*await axios.post()
-        .then(res=>{
-          console.log(res)
-        }
-        )*/
+        await axios.post(`${process.env.REACT_APP_API_URL}/cms/members/new`,{member: member})
       
     }
     
     const handleChange = e=>{
+
+    setMember(prev=>({...prev,[e.target.name]:e.target.value}))
     
     }
   return (
@@ -35,7 +33,7 @@ import { useState } from "react";
       <div>
       <div >
         <label className="label">Name:</label>
-        <input className="mName" name="mName" type="text" onChange={handleChange}/>
+        <input className="mName" name="name" type="text" onChange={handleChange}/>
       </div>
       <div className="row">
         <label className="label">Team:</label>
@@ -50,12 +48,12 @@ import { useState } from "react";
       </div>
       <div className="row">
         <label className="label">LinkedIn link:</label>
-        <input className="link" name="link" type="url"  onChange={handleChange}/>
+        <input className="link" name="Llink" type="url"  onChange={handleChange}/>
       </div>
       <div className="row">
         <div className="last">
         <label for="image" className="img">Image:</label>
-      <input type="file" className="image" name="image" onChange={handleChange}/>
+      <input type="file" className="image" name="photo_url" onChange={handleChange}/>
         </div>
       
       </div>

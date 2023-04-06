@@ -2,7 +2,7 @@ import React from "react";
 import "../style/addEvents.css";
 import axios from 'axios'
 import { useState } from "react";
-
+  
 // const AddEvents = ({ visible, show }) => {
   const AddEvents = () => {
     
@@ -13,8 +13,8 @@ import { useState } from "react";
   
     const handleSubmit= async (e) =>{  
       e.preventDefault()   
-
-        await axios.post("http://localhost:3000/cms/events/new",{event: event})
+        console.log(process.env.REACT_APP_API_URL)
+        await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/new`,{event: event})
         .then(res=>{
           console.log(res)
         }
@@ -53,7 +53,7 @@ import { useState } from "react";
       </div>
       <div className="row">
         <label className="label">Registration link:</label>
-        <input className="registrationLink" name="registrationLink" type="url" value={event.registrationLink} onChange={handleChange}/>
+        <input className="registrationLink" name="registration_link" type="url" value={event.registrationLink} onChange={handleChange}/>
       </div>
       <div className="row">
         <label className="label">Description:</label>

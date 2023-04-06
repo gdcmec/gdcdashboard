@@ -6,8 +6,7 @@ import axios from 'axios';
  
   const handleDelete = async (id) => {
     try {
-
-      await axios.get(`http://localhost:3000/cms/members/delete/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/cms/members/delete/${id}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -16,46 +15,23 @@ import axios from 'axios';
 
 
  const MemberList = () => {
-    const members=[{
-        memname:"Tom"
-    },
-    {
-        memname:"Allen"
-    },
-    {
-        memname:"Vaidyanath"
-    },
-    {
-        memname:"Akash"
-    }
-    ]
-//     const [memberlist,setMemberlist] = useState([{}])
-//     const [loading,setLoading] = useState(true)
-//   useEffect(() => {
-//     setLoading(true)
-//       axios.get("http://localhost:3000/cms/members/get")
-//         .then((res) => {
-//         setMemberlist(res.data)
-//         setLoading(false)
-//       }
-//       )
+    const [members,setMembers] = useState([{}])
+    const [loading,setLoading] = useState(true)
+  useEffect(() => {
+    setLoading(true)
+      axios.get(`${process.env.REACT_APP_API_URL}/cms/members/get`)
+        .then((res) => {
+        setMembers(res.data.members)
+        setLoading(false)
+      }
+      )
       
-//    }, [])
+   }, [])
 
-  //  const[members,setMembers]=useState([])
-    
   
-   // useEffect(async()=>{
-//   try{
-//     const data= (await axios.get("/events")).data
-//     setEvents(data)
-//   }catch(err){
-//     console.log(err);
-//   }
-// },[])
 
   return (
-//  loading ? <div>Loading...</div> :
+ loading ? <div>Loading...</div> :
     <div className='main'>
       <div className="heading">
 Members

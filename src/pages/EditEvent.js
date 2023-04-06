@@ -14,10 +14,7 @@ import {useLocation} from "react-router-dom";
 
     const handleSubmit= async (e) =>{  
       e.preventDefault() 
-            console.log("submit")        
-           console.log(events)
-          
-            const res = await axios.post("http://localhost:3000/cms/events/edit",{event: events})
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events})
             console.log(res)
     }
     

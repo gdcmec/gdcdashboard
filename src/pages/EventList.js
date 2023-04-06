@@ -9,7 +9,7 @@ import axios from 'axios';
 const handleDelete = async (id) => {
   try {
 
-    await axios.get(`http://localhost:3000/cms/events/delete/${id}`);
+    await axios.get(`${process.env.REACT_APP_API_URL}/cms/events/delete/${id}`);
     window.location.reload();
   } catch (err) {
     console.log(err);
@@ -23,7 +23,7 @@ const EventList = () => {
     const [loading,setLoading] = useState(true)
   useEffect(() => {
     setLoading(true)
-      axios.get("http://localhost:3000/cms/events/get")
+      axios.get(`${process.env.REACT_APP_API_URL}/cms/events/get`)
         .then((res) => {
         setEventlist(res.data)
         setLoading(false)
