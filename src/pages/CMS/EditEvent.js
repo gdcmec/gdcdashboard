@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/addEvents.css";
+import "../../style/addEvents.css";
 import axios from 'axios'
 import { useState  } from "react";
 import {useLocation} from "react-router-dom";

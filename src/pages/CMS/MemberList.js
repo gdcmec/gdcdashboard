@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import '../style/members.css'
- import { ReactComponent as PlusIcon } from '../plus-icon.svg';
+import '../../style/members.css'
+ import { ReactComponent as PlusIcon } from '../../plus-icon.svg';
 import axios from 'axios';
  
   const handleDelete = async (id) => {
@@ -39,7 +39,7 @@ Members
     <ul className="allmembers">
         <li className="add-member">
         <div className="add-plus">
-        <Link to="/addmember" >
+        <Link to="/cms/addmember" >
            <button className='add' ><PlusIcon className="add-icon" /></button>
          </Link>
           </div>
@@ -48,16 +48,21 @@ Members
         
       members.length > 0 &&
       members.map((m) => (
-        <li className="singlemember">
-          <span className="membertext" key={m.id}>
-            {m.memname}
+        <li className="singlemember" key={m.id}>
+          <span className="membertext">
+            {m.name}
           </span>
-            <Link to="/editmember" state={{members : m}}>
+          <span className="membertext" >
+            {m.role}
+          </span>
+          <div className='justify-end'> 
+            <Link to="/cms/editmember" state={{members : m}}>
           <button className='ed' >
             Edit
             </button>
             </Link>
           <button className='del' onClick={() => handleDelete(m._id)}>Delete</button>
+          </div>
         
         </li>
       ))}
