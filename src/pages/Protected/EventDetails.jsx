@@ -22,7 +22,7 @@ const EventList = () => {
     
     return (
         loading ? <></>:
-        <div>
+        <div className='min-w-[50%] overflow-y-scroll'>
         <h1>Event List</h1>
         {events.map((event) => 
              <EventBar event={event} />
