@@ -1,27 +1,49 @@
 import React from "react";
 import "../../style/addEvents.css";
 import axios from 'axios'
-import { useState  } from "react";
-import {useLocation} from "react-router-dom";
+import { useState , useEffect  } from "react";
+import {useLocation , useParams,useNavigate} from "react-router-dom";
+
 
 
   const EditEvent = () => {
 
-    const location = useLocation();
-    console.log(location.state)
-
-    const [events,setEvents]=useState(location.state.events)
+    const navigate = useNavigate();
+    const [events, setEvents] = useState({});
+    const [loading, setLoading] = useState(true);
+    const {eventId} = useParams()
 
     const handleSubmit= async (e) =>{  
       e.preventDefault() 
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events})
-            console.log(res)
+            console.log("edited event : " , res)
+            navigate('/cms/events')
+
     }
     
     const handleChange = e=>{
     setEvents(prev=>({...prev,[e.target.name]:e.target.value}))
     }
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get(`${process.env.REACT_APP_API_URL}/cms/events/get/${eventId}`)
+        .then((response) => {
+            setEvents(response.data.event.details);
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, [eventId]);
+
+
+
+       
+
   return (
+
+    loading ? <div>Loading...</div> :
    <div className="main" >
     <div className="heading">
         Edit event
