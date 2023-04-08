@@ -24,11 +24,11 @@ function Navbar({ visible, show }) {
               
               <span>Dashboard</span>
             </NavLink>
-            <NavLink to="/events" className="nav-link">
+            <NavLink to="/cms/events" className="nav-link">
               
               <span>Events </span>
             </NavLink>
-            <NavLink to="/members" className="nav-link">
+            <NavLink to="/cms/members" className="nav-link">
               
               <span>Members </span>
             </NavLink>
