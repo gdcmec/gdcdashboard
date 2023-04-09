@@ -2,23 +2,35 @@ import React from "react";
 import "../../style/addEvents.css";
 import axios from 'axios'
 import { useState } from "react";
+import supabase from '../../supabase.config'
   
 // const AddEvents = ({ visible, show }) => {
   const AddEvents = () => {
     
     const [event,setEvent]=useState({
     })
+
+    const [poster,setPoster]=useState(null)
+
+    const [poster_url,setPoster_url]=useState(null)
   
     //  const [error,setError]= useState(null)  
   
     const handleSubmit= async (e) =>{  
       e.preventDefault()   
         console.log(process.env.REACT_APP_API_URL)
-        await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/new`,{event: event})
-        .then(res=>{
-          console.log(res)
+        const addedEvent = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/new`,{event: event})
+        console.log(addedEvent.data.newEvent.event_id)
+        const {data , error} = await supabase.storage.from('events').upload(`${addedEvent.data.newEvent.event_id}/poster.jpg`, poster)
+        if(error){
+          console.log(error)
         }
-        )
+        else{
+          console.log(data.path)
+          const publicUrl = supabase.storage.from('events').getPublicUrl(data.path)
+          console.log(publicUrl)
+          setPoster_url(publicUrl.data.publicUrl)
+        }
       
     }
     
@@ -62,13 +74,17 @@ import { useState } from "react";
       <div className="row">
         <div className="last">
         <label for="image" className="img">Image:</label>
-      <input type="file" id="image" name="image" onChange={handleChange}/>
+      <input type="file" id="image" name="poster_file" onChange={(e)=>
+        setPoster(e.target.files[0])
+  }/>
         </div>
       
       </div>
-      
 
-      </div>
+      <img src = {poster_url} alt = "poster_url" />      
+
+
+    </div>
       
       <div className="btn">
       <button className="button" type="submit" onClick={handleSubmit}>Submit</button>

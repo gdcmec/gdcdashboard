@@ -3,6 +3,8 @@ import "../../style/addEvents.css";
 import axios from 'axios'
 import { useState , useEffect  } from "react";
 import {useLocation , useParams,useNavigate} from "react-router-dom";
+import supabase from '../../supabase.config'
+
 
 
 
@@ -11,13 +13,23 @@ import {useLocation , useParams,useNavigate} from "react-router-dom";
     const navigate = useNavigate();
     const [events, setEvents] = useState({});
     const [loading, setLoading] = useState(true);
+    const [poster, setPoster] = useState(null);
+
     const {eventId} = useParams()
 
-    const handleSubmit= async (e) =>{  
-      e.preventDefault() 
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events})
-            console.log("edited event : " , res)
+    const handleSubmit= async (e) =>{
+        e.preventDefault()  
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events})
+       console.log("edited event : " , res)
+          
+            const {_ , error} = await supabase.storage.from('events').upload(`${eventId}/poster.jpg`, poster , {upsert: true})
+            if(error){
+              console.log(error)
+            }
+            else{
             navigate('/cms/events')
+            }
+
 
     }
     
@@ -27,14 +39,20 @@ import {useLocation , useParams,useNavigate} from "react-router-dom";
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_API_URL}/cms/events/get/${eventId}`)
+       const fetch = async () =>{
+
+        await axios.get(`${process.env.REACT_APP_API_URL}/cms/events/get/${eventId}`)
         .then((response) => {
+            
             setEvents(response.data.event.details);
-            setLoading(false);
         })
         .catch((error) => {
             console.log(error);
         });
+
+      }
+
+      fetch().then(() => setLoading(false));
     }, [eventId]);
 
 
@@ -80,7 +98,9 @@ import {useLocation , useParams,useNavigate} from "react-router-dom";
       <div className="row">
         <div className="last">
         <label for="image" className="img">Image:</label>
-      <input type="file" id="image" name="image" onChange={handleChange}/>
+      <input type="file" id="image" name="image" onChange={(e)=>{
+        setPoster(e.target.files[0])
+      }}/>
         </div>
       
       </div>
@@ -91,6 +111,8 @@ import {useLocation , useParams,useNavigate} from "react-router-dom";
       <div className="btn">
       <button className="button" type="submit" onClick={handleSubmit}>Submit</button>
       </div>
+
+      <img src={events.poster_url} alt="" />
       
     </form>
     </div>

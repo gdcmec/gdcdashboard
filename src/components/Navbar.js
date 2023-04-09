@@ -32,6 +32,11 @@ function Navbar({ visible, show }) {
               
               <span>Members </span>
             </NavLink>
+
+              <NavLink to="/events" className="nav-link">
+              
+              <span>EventList </span>
+            </NavLink>
           </div>
           <div className="links">
             <NavLink to="/Sign-out" className="nav-link">

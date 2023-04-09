@@ -12,7 +12,7 @@ const EventBar = ({event}) => {
           <h3 className="text-lg font-medium">{event.title}</h3>
           <p className="text-gray-500">{date} {event.time}</p>
           <p>{event.venue}</p>
-          <p>Interested: 102</p>
+          <p>Interested: {event.interested_count}</p>
         </div>
         
         <button className="px-4 py-2 rounded-md bg-blue-500 text-white font-medium" 

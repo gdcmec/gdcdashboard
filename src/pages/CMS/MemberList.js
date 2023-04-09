@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import '../../style/members.css'
  import { ReactComponent as PlusIcon } from '../../plus-icon.svg';
 import axios from 'axios';
@@ -13,8 +13,9 @@ import axios from 'axios';
     }
   };
 
-
  const MemberList = () => {
+
+    const navigate = useNavigate();
     const [members,setMembers] = useState([{}])
     const [loading,setLoading] = useState(true)
   useEffect(() => {
@@ -28,6 +29,15 @@ import axios from 'axios';
       
    }, [])
 
+   
+  const handleEdit = (id) => {
+    try {
+      console.log("member_id" ,id);
+      navigate(`/cms/editMember/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
 
   return (
@@ -48,7 +58,7 @@ Members
         
       members.length > 0 &&
       members.map((m) => (
-        <li className="singlemember" key={m.id}>
+        <li className="singlemember" key={m.member_id}>
           <span className="membertext">
             {m.name}
           </span>
@@ -56,12 +66,15 @@ Members
             {m.role}
           </span>
           <div className='justify-end'> 
-            <Link to="/cms/editmember" state={{members : m}}>
-          <button className='ed' >
+          <button className='ed' 
+                onClick={() => {
+                  handleEdit(m.member_id);
+                }
+                }
+          >
             Edit
             </button>
-            </Link>
-          <button className='del' onClick={() => handleDelete(m._id)}>Delete</button>
+          <button className='del' onClick={() => handleDelete(m.member_id)}>Delete</button>
           </div>
         
         </li>
@@ -70,5 +83,6 @@ Members
     </div>
   );
 };
+
 
 export default MemberList;
