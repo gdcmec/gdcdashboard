@@ -29,7 +29,7 @@ const  StaticContent = () => {
 
     const editAbout = async (data) => {  //data is the entire object with id title description
         
-       const {data , error } = await axios.post(`${process.env.REACT_APP_API_URL}/cms/static/editabout`, data)
+       const {success , error } = await axios.post(`${process.env.REACT_APP_API_URL}/cms/static/editabout`, data)
 
        if(error)
         console.log(error)
