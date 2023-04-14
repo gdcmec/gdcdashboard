@@ -50,7 +50,7 @@ import { useNavigate } from "react-router-dom";
       </div>
       <div className="row">
         <label className="label">Team:</label>
-        <input className="team" name="team" type="text" value={member.team}  onChange={handleChange}/>
+        <input className="team" name="team_name" type="text" value={member.team}  onChange={handleChange}/>
       </div>
 
       <div className="row">

@@ -76,14 +76,14 @@ import supabase from "../../supabase.config";
       </div>
       <div className="row">
         <label className="label">Team:</label>
-        <input className="position" name="team" type="text"  value={member.team} onChange={handleChange}/>
+        <input className="position" name="team_name" type="text"  value={member.team_name} onChange={handleChange}/>
       </div>
       
       
       
       <div className="row">
         <label className="label">Position:</label>
-        <input className="position" name="position" type="text" value={member.postion} onChange={handleChange}/>
+        <input className="position" name="position" type="text" value={member.position} onChange={handleChange}/>
       </div>
       <div className="row">
         <label className="label">LinkedIn link:</label>
