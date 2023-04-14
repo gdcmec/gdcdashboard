@@ -11,6 +11,7 @@ import EditMember from "./pages/CMS/EditMember";
 import MemberList from "./pages/CMS/MemberList";
 import EventDetails from "./pages/Protected/EventDetails";
 import ViewEvent from "./pages/Protected/ViewEvent";
+import StaticContent from "./pages/CMS/Static";
 
 function App() {
   const [navVisible, showNavbar] = useState(false);
@@ -55,6 +56,11 @@ function App() {
 
               <Route path = "/events/:eventId" element = {<div className = {!navVisible ? "page" : "page page-with-navbar"}>
                 <ViewEvent/>
+              </div>}>
+
+              </Route>
+              <Route path = "/cms/static" element = {<div className = {!navVisible ? "page" : "page page-with-navbar"}>
+                <StaticContent/>
               </div>}>
 
               </Route>

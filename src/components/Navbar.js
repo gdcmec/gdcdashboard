@@ -37,6 +37,10 @@ function Navbar({ visible, show }) {
               
               <span>EventList </span>
             </NavLink>
+              <NavLink to="/cms/static" className="nav-link">
+              
+              <span>static content </span>
+            </NavLink>
           </div>
           <div className="links">
             <NavLink to="/Sign-out" className="nav-link">
