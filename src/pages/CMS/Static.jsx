@@ -51,7 +51,7 @@ const  StaticContent = () => {
         console.log(error)
     }
     const deleteTech = async (id) => {    //id of the tech
-       const {data , error } = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/static/deleteTech/${id}`)
+       const {res , error } = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/static/deleteTech/${id}`)
 
        if(error)
         console.log(error)
