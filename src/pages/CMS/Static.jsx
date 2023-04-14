@@ -67,3 +67,5 @@ const  StaticContent = () => {
 
     )
 }
+
+export default StaticContent
