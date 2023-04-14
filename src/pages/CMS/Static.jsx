@@ -38,14 +38,14 @@ const  StaticContent = () => {
     }
 
     const AddTech = async (data) => {     //entire obj
-       const {data , error } = await axios.post(`${process.env.REACT_APP_API_URL}/cms/static/newTech`, data)
+       const {res , error } = await axios.post(`${process.env.REACT_APP_API_URL}/cms/static/newTech`, data)
 
        if(error)
         console.log(error)
        
     }
     const editTech = async (data) => {   //entire obj
-      const {data , error } =  await axios.post(`${process.env.REACT_APP_API_URL}/cms/static/editTech`, data)
+      const {res , error } =  await axios.post(`${process.env.REACT_APP_API_URL}/cms/static/editTech`, data)
 
       if(error)
         console.log(error)
