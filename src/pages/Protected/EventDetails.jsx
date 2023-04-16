@@ -10,7 +10,7 @@ const EventList = () => {
     useEffect(() => {
         setLoading(true);
         axios
-        .get(`${process.env.REACT_APP_API_URL}/cms/events/getHeaders`)
+        .get(`${process.env.REACT_APP_API_URL}/cms/events/getHeaders` , {withCredentials: true})
         .then((response) => {
             setEvents(response.data.events);
             setLoading(false);

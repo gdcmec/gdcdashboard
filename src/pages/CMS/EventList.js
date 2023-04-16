@@ -9,7 +9,7 @@ import axios from 'axios';
 const handleDelete = async (id) => {
   try {
 
-    await axios.delete(`${process.env.REACT_APP_API_URL}/cms/events/delete/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/cms/events/delete/${id}` , { withCredentials: true});
     window.location.reload();
   } catch (err) {
     console.log(err);

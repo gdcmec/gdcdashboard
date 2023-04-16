@@ -45,7 +45,7 @@ useEffect(() => {
 
 const saveAttendanceSheet = async () => {
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/add-attended/${eventId}` , {sheet_id : sheets.attended});
+        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/add-attended/${eventId}` , {sheet_id : sheets.attended} , {withCredentials : true});
         window.location.reload();
     } catch (err) {
         console.log(err);
@@ -55,7 +55,7 @@ const saveAttendanceSheet = async () => {
 const runAttendanceSheet = async () => {
 
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/run-attendance/${eventId}` , {sheet_id : sheets.attended});
+        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/run-attendance/${eventId}` , {sheet_id : sheets.attended} , {withCredentials : true});
         window.location.reload();
     } catch (err) {
         console.log(err);
@@ -65,7 +65,7 @@ const runAttendanceSheet = async () => {
 const saveRegistrationSheet = async () => { 
 
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/add-registration/${eventId}` , {sheet_id : sheets.expected});
+        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/add-registration/${eventId}` , {sheet_id : sheets.expected} , {withCredentials : true});
         window.location.reload();
     } catch (err) {
         console.log(err);
@@ -75,7 +75,7 @@ const saveRegistrationSheet = async () => {
 const runRegistrationSheet = async () =>{
 
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/run-registration/${eventId}` , {sheet_id : sheets.expected});
+        await axios.post(`${process.env.REACT_APP_API_URL}/sheets/run-registration/${eventId}` , {sheet_id : sheets.expected} , {withCredentials : true});
         window.location.reload();
     } catch (err) {
         console.log(err);
@@ -86,7 +86,7 @@ const runRegistrationSheet = async () =>{
 
 const markAttendance = async (user_id) => {
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/addAttendee/${eventId}` , {user_id : user_id});
+        await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/addAttendee/${eventId}` , {user_id : user_id} , {withCredentials : true});
         window.location.reload();
     } catch (err) {
         console.log(err);
@@ -94,7 +94,7 @@ const markAttendance = async (user_id) => {
 }
 const removeAttendance = async (user_id) => {
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/deleteAttendee/${eventId}` , {user_id : user_id});
+        await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/deleteAttendee/${eventId}` , {user_id : user_id} , {withCredentials : true});
         window.location.reload();
     } catch (err) {
         console.log(err);

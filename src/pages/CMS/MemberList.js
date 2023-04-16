@@ -20,7 +20,7 @@ import axios from 'axios';
     const [loading,setLoading] = useState(true)
   useEffect(() => {
     setLoading(true)
-      axios.get(`${process.env.REACT_APP_API_URL}/cms/members/get`)
+      axios.get(`${process.env.REACT_APP_API_URL}/cms/members/get` , {withCredentials: true})
         .then((res) => {
         setMembers(res.data.members)
         setLoading(false)

@@ -5,18 +5,27 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "../style/navbar.css";
+import axios from "axios";
 
 
 function Navbar({ visible, show }) {
+  const Logout = async() => {
+      const logout = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/admins/logout` , { withCredentials: true} )
+      if(logout.data.success){
+        window.location.href = "/"
+      }
+  }
   return (
     <>
       <nav className={!visible ? "navbar" : ""}>
 			<button
           type="button"
           className="nav-btn"
-          onClick={() => show(!visible)}
+          onClick={(e) =>{
+            e.preventDefault()
+            show((prevState)=>!prevState)}}
         >
-          {!visible ? <FaAngleRight size={30} /> : <FaAngleLeft size={30} />}
+          {!visible ? <FaAngleRight size={30} color="black"  /> : <FaAngleLeft size={30} color="black" />}
         </button>
         <div>
           <div className="links nav-top">
@@ -43,10 +52,11 @@ function Navbar({ visible, show }) {
             </NavLink>
           </div>
           <div className="links">
-            <NavLink to="/Sign-out" className="nav-link">
+            
              
-              <span>Logout</span>
-            </NavLink>
+              <button className="nav-link "
+                onClick={Logout}
+              >Logout</button>
           </div>
         </div>
       </nav>

@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./style/index.css";
 import "./App.css"
+import Login from "./pages/Login";
 import EventList from "./pages/CMS/EventList";
 import AddEvents from "./pages/CMS/AddEvents";
 import EditEvent from "./pages/CMS/EditEvent";
@@ -12,6 +13,7 @@ import MemberList from "./pages/CMS/MemberList";
 import EventDetails from "./pages/Protected/EventDetails";
 import ViewEvent from "./pages/Protected/ViewEvent";
 import StaticContent from "./pages/CMS/Static";
+import { AuthProvider } from "./context/Context";
 
 function App() {
   const [navVisible, showNavbar] = useState(false);
@@ -20,8 +22,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar visible={navVisible} show={showNavbar} />
+          <AuthProvider>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/" element={<Login/>} />
           <Route
             path="/dashboard"
             element={
@@ -64,8 +67,9 @@ function App() {
               </div>}>
 
               </Route>
-          
         </Routes>
+          </AuthProvider>
+          
       </div>
     </BrowserRouter>
   );

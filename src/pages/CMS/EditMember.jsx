@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useState , useEffect } from "react";
 import { useParams , useNavigate } from "react-router-dom";
 import supabase from "../../supabase.config";
+
+axios.defaults.withCredentials = true;
 // const AddEvents = ({ visible, show }) => {
   const EditMember = () => {
     
@@ -11,7 +13,6 @@ import supabase from "../../supabase.config";
     const {id} = useParams();
     const [member,setMember]=useState()
     const [photo,setPhoto]=useState(null)
-    const [photo_url , setPhoto_url] = useState(null)
     const [loading,setLoading]=useState(true)
   
     //  const [error,setError]= useState(null)  
