@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         
        try{
         setAuthLoading(true)
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/cms/admins/is-authenticated`, { withCredentials: true })
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/cms/admins/is-authenticated`, { withCredentials: true })
 
         if(response.data.authenticated){
         console.log("isAuthenticated", response.data.authenticated)
