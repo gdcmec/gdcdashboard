@@ -1,9 +1,12 @@
 import {useState} from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 function Login() {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const [token, setToken, removeToken] = useCookies(['access_token']);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +18,7 @@ function Login() {
             if(res.data.success)
             {
                 console.log(res.data);
+                setToken('access_token', res.data.token);
                 window.location.href = "/dashboard";
             }
 
