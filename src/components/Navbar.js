@@ -6,13 +6,18 @@ import {
 import { NavLink } from "react-router-dom";
 import "../style/navbar.css";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 
 
 
 function Navbar({ visible, show }) {
+
+  const [token, setToken, removeToken] = useCookies(["access_token"]);
+
   const Logout = async() => {
       const logout = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/admins/logout` , { withCredentials: true} )
+      removeToken("access_token")
       if(logout.data.success){
         window.location.href = "/"
       }
