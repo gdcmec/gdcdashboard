@@ -8,6 +8,8 @@ import "../style/navbar.css";
 import axios from "axios";
 
 
+
+
 function Navbar({ visible, show }) {
   const Logout = async() => {
       const logout = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/admins/logout` , { withCredentials: true} )
@@ -17,7 +19,7 @@ function Navbar({ visible, show }) {
   }
   return (
     <>
-      <nav className={!visible ? "navbar" : ""}>
+      <nav className={!visible ? "navbar" : "z-[2]"}>
 			<button
           type="button"
           className="nav-btn"

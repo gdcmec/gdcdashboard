@@ -4,13 +4,21 @@ import axios from 'axios'
 import { useState , useEffect  } from "react";
 import {useLocation , useParams,useNavigate} from "react-router-dom";
 import supabase from '../../supabase.config'
+import {AuthContext} from '../../context/Context'
+import {useContext} from 'react'
 
 
-
+axios.defaults.withCredentials = true;
 
   const EditEvent = () => {
 
+
     const navigate = useNavigate();
+    const {isAuthenticated} = useContext(AuthContext)
+    console.log(isAuthenticated)
+    if(!isAuthenticated){
+        navigate('/')
+    }
     const [events, setEvents] = useState({});
     const [loading, setLoading] = useState(true);
     const [poster, setPoster] = useState(null);
@@ -19,7 +27,7 @@ import supabase from '../../supabase.config'
 
     const handleSubmit= async (e) =>{
         e.preventDefault()  
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events})
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events} , {withCredentials: true})
        console.log("edited event : " , res)
           
             const {_ , error} = await supabase.storage.from('events').upload(`${eventId}/poster.jpg`, poster , {upsert: true})
@@ -75,7 +83,8 @@ import supabase from '../../supabase.config'
       </div>
       <div className="row">
         <label className="label">Event date:</label>
-        <input className="date" name="date" type="date" value= {events.date} onChange={handleChange}/>
+        <input className="date" name="date" type="date" value= {new Date(events.date).toLocaleDateString("en-IN")}
+         onChange={handleChange}/>
       </div>
       
       <div className="row">
