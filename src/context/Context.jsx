@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 
 import axios from 'axios'
-import {useCookies} from 'react-cookie'
 
 export const AuthContext = createContext()
 export const LoadingContext = createContext()
@@ -10,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [authLoading, setAuthLoading] = useState(false)
 
-  const [token, setToken, removeToken] = useCookies(['access_token']);
 
   useEffect(() => {
     // Perform the API call to check the authentication status
