@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }) => {
         }
         
        }
-         else{
-        console.log("isAuthenticated", response.data.authenticated)
+       else{
         setIsAuthenticated(false)
         setAuthLoading(false)
-        return (window.location.href = "/")
-       }
+        if(window.location.pathname != "/")
+            return window.location.href = "/";
+      }
     }
          catch(err){
             if(window.location.pathname === "/"){

@@ -5,10 +5,11 @@ import '../../style//events.css'
 import axios from 'axios';
 // // import './plus-icon.svg';
 // import { FaPlus } from 'react-icons/fa';
- 
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 const handleDelete = async (id) => {
   try {
-
+    
     await axios.delete(`${process.env.REACT_APP_API_URL}/cms/events/delete/${id}` , { withCredentials: true});
     window.location.reload();
   } catch (err) {
@@ -18,31 +19,39 @@ const handleDelete = async (id) => {
 
 
 const EventList = () => {
-
-    const navigate = useNavigate();
-    const [eventlist,setEventlist] = useState([{}])
-    const [loading,setLoading] = useState(true)
+  
+  const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext);
+  
+  
+  const [eventlist,setEventlist] = useState([{}])
+  const [loading,setLoading] = useState(true)
   useEffect(() => {
     setLoading(true)
       axios.get(`${process.env.REACT_APP_API_URL}/cms/events/getHeaders`)
-        .then((res) => {
+      .then((res) => {
         setEventlist(res.data.events)
         setLoading(false)
       }
       )
       
-  }, [])
-
-  //  const[events,setEvents]=useState([])
+    }, [])
+    useEffect(() => {
+    if(!isAuthenticated){
+                window.location.href = "/";
+            }
+        }, [isAuthenticated]);
     
-  
-   // useEffect(async()=>{
-//   try{
-//     const data= (await axios.get("/events")).data
-//     setEvents(data)
-//   }catch(err){
-//     console.log(err);
-//   }
+    //  const[events,setEvents]=useState([])
+    
+    
+    // useEffect(async()=>{
+      //   try{
+        //     const data= (await axios.get("/events")).data
+        //     setEvents(data)
+        //   }catch(err){
+          //     console.log(err);
+          //   }
 // },[])
 
   return (

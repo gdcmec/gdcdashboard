@@ -23,7 +23,7 @@ function Login() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center h-screen bg-black">
+        <div className="flex flex-col justify-center items-center h-screen bg-white">
             <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center ">
                 <input type="text" 
                     className="border-2 border-gray-300 p-2 m-2 rounded-lg focus:outline-none focus:border-blue-500"

@@ -4,17 +4,27 @@ import { useParams } from "react-router-dom";
 import {ExpectedUser , AttendedUser} from "../../components/UserBlock";
 import axios from "axios";
 
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 
 const ViewEvent = () => {
-
-
-const [event, setEvent] = useState([]);
+    
+    
+    const { isAuthenticated } = useContext(AuthContext);
+    
+    
+    const [event, setEvent] = useState([]);
 const [sheets , setSheets] = useState();
 const [loading, setLoading] = useState(true);
 const { eventId } = useParams();
 
 useEffect(() => {
-
+    if(!isAuthenticated){
+        window.location.href = "/";
+    }
+}, [isAuthenticated]);
+useEffect(() => {
+    
     const fetchDetails = async () => {
     setLoading(true);
     await axios.get(`${process.env.REACT_APP_API_URL}/cms/events/get/${eventId}`)

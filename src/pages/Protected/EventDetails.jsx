@@ -3,10 +3,14 @@ import EventBar from "../../components/EventBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 const EventList = () => {
+
+
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { isAuthenticated } = useContext(AuthContext);
     useEffect(() => {
         setLoading(true);
         axios
@@ -19,6 +23,13 @@ const EventList = () => {
             console.log(error);
         });
     }, []);
+
+    useEffect(() => {
+        if(!isAuthenticated){
+            window.location.href = "/";
+        }
+    }, [isAuthenticated]);
+    
     
     return (
         loading ? <></>:

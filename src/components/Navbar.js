@@ -7,11 +7,13 @@ import { NavLink } from "react-router-dom";
 import "../style/navbar.css";
 import axios from "axios";
 
-
+import { useContext } from "react";
+import { AuthContext } from "../context/Context";
 
 
 function Navbar({ visible, show }) {
 
+  const {isAuthenticated } = useContext(AuthContext)
 
   const Logout = async() => {
       const logout = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/admins/logout` , { withCredentials: true} )
@@ -56,11 +58,16 @@ function Navbar({ visible, show }) {
             </NavLink>
           </div>
           <div className="links">
-            
              
-              <button className="nav-link "
+             { isAuthenticated ? <button className="nav-link "
                 onClick={Logout}
-              >Logout</button>
+              >Logout</button> :
+                <button className="nav-link" onClick ={
+                  ()=>window.location.href = "/"
+                } >Login</button>
+              }
+
+
           </div>
         </div>
       </nav>

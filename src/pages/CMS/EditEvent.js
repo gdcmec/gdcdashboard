@@ -16,10 +16,7 @@ axios.defaults.withCredentials = true;
 
     const navigate = useNavigate();
     const {isAuthenticated} = useContext(AuthContext)
-    console.log(isAuthenticated)
-    if(!isAuthenticated){
-        navigate('/')
-    }
+
     const [events, setEvents] = useState({});
     const [loading, setLoading] = useState(true);
     const [poster, setPoster] = useState(null);
@@ -87,6 +84,12 @@ catch(err){
 
       fetch().then(() => setLoading(false));
     }, [eventId]);
+
+    useEffect(() => {
+        if(!isAuthenticated){
+            window.location.href = "/";
+        }
+    }, [isAuthenticated]);
 
 
 

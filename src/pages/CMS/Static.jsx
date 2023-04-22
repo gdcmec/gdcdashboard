@@ -4,8 +4,11 @@ import '../../style/Static.scss'
 import React from 'react'
 import Modal from 'react-modal';
 import { Form } from 'react-router-dom';
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 
 const StaticContent = () => {
+    const { isAuthenticated } = useContext(AuthContext);
     let subtitle;
     const [AboutUs, setAboutUs] = useState(null);
     const [ContactUs, setContactUs] = useState();
@@ -14,13 +17,19 @@ const StaticContent = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [addmodalIsOpen, setAddIsOpen] = useState(false);
     const [editModalVal,setEditModalVal]= useState({title:null,description:null});
-
+    
     const techTitleRef = useRef(null);
     const techDescRef = useRef(null);
     const titleRef = useRef(null);
     const descRef = useRef(null);
     const [Loading, setLoading] = useState(true);
-
+    
+    
+    useEffect(() => {
+            if(!isAuthenticated){
+                window.location.href = "/";
+            }
+        }, [isAuthenticated]);
     useEffect(() => {
 
         const fetch= async ()=>{

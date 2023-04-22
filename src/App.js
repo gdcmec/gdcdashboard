@@ -21,8 +21,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+      <AuthProvider>
         <Navbar visible={navVisible} show={showNavbar} />
-          <AuthProvider>
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route

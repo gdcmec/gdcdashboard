@@ -1,43 +1,52 @@
 import React from "react";
 import "../../style/addMember.css";
 import axios from 'axios'
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import supabase from "../../supabase.config";
 import { useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 // const AddEvents = ({ visible, show }) => {
   const AddMember = () => {
+    const { isAuthenticated } = useContext(AuthContext);
     
     const navigate = useNavigate()
     const [member,setMember]=useState({
     })
-
+    
     const [photo,setPhoto]=useState(null)
-  
+    
     //  const [error,setError]= useState(null)  
-  
+    
     const handleSubmit= async (e) =>{  
       e.preventDefault()   
-
-       const edited =  await axios.post(`${process.env.REACT_APP_API_URL}/cms/members/new`,{member: member})
-
-        const {data , error} = await supabase.storage.from('members').upload(`${edited.data.member_id}.jpg`,photo)
-        if(error){
-          console.log(error)
-        }
-        else{
-          navigate('/cms/members')
-        }
+      
+      const edited =  await axios.post(`${process.env.REACT_APP_API_URL}/cms/members/new`,{member: member})
+      
+      const {data , error} = await supabase.storage.from('members').upload(`${edited.data.member_id}.jpg`,photo)
+      if(error){
+        console.log(error)
+      }
+      else{
+        navigate('/cms/members')
+      }
       
     }
     
     const handleChange = e=>{
-
-    setMember(prev=>({...prev,[e.target.name]:e.target.value}))
-    
+      
+      setMember(prev=>({...prev,[e.target.name]:e.target.value}))
+      
     }
-  return (
-   <div className="main" >
+    
+    useEffect(() => {
+          if(!isAuthenticated){
+              window.location.href = "/";
+          }
+      }, [isAuthenticated]);
+    return (
+      <div className="main" >
     <div className="heading">
       Add Member 
     </div>
@@ -50,7 +59,18 @@ import { useNavigate } from "react-router-dom";
       </div>
       <div className="row">
         <label className="label">Team:</label>
-        <input className="team" name="team_name" type="text" value={member.team}  onChange={handleChange}/>
+        {/* <input className="team" name="team_name" type="text" value={member.team}  onChange={handleChange}/> */}
+        <select className="team" name="team_name" value={member.team_name} onChange={handleChange}>
+          <option value="Design">Design</option>
+          <option value="Social Media">Social Media</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Executive committee">EXECOM</option>
+          <option value="Tech">Tech</option>
+          <option value="Content">Content</option>
+          <option value="Non Tech">Non Tech</option>
+          <option value="Events">Event</option>
+        </select>
+
       </div>
 
       <div className="row">

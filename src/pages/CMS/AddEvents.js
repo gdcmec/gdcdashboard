@@ -1,44 +1,54 @@
 import React from "react";
 import "../../style/addEvents.css";
 import axios from 'axios'
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import supabase from '../../supabase.config'
   
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 // const AddEvents = ({ visible, show }) => {
   const AddEvents = () => {
+
+    const { isAuthenticated } = useContext(AuthContext);
+
     
     const [event,setEvent]=useState({
     })
-
+    
     const [poster,setPoster]=useState(null)
-
+    
     const [poster_url,setPoster_url]=useState(null)
-  
+    
     //  const [error,setError]= useState(null)  
-  
+    
     const handleSubmit= async (e) =>{  
       e.preventDefault()   
-        console.log(process.env.REACT_APP_API_URL)
-        const addedEvent = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/new`,{event: event})
-        console.log(addedEvent.data.newEvent.event_id)
-        const {data , error} = await supabase.storage.from('events').upload(`${addedEvent.data.newEvent.event_id}/poster.jpg`, poster)
-        if(error){
-          console.log(error)
-        }
-        else{
-          console.log(data.path)
-          const publicUrl = supabase.storage.from('events').getPublicUrl(data.path)
-          console.log(publicUrl)
+      console.log(process.env.REACT_APP_API_URL)
+      const addedEvent = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/new`,{event: event})
+      console.log(addedEvent.data.newEvent.event_id)
+      const {data , error} = await supabase.storage.from('events').upload(`${addedEvent.data.newEvent.event_id}/poster.jpg`, poster)
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log(data.path)
+        const publicUrl = supabase.storage.from('events').getPublicUrl(data.path)
+        console.log(publicUrl)
           setPoster_url(publicUrl.data.publicUrl)
         }
+        
+      }
       
-    }
-    
-    const handleChange = e=>{
-    setEvent(prev=>({...prev,[e.target.name]:e.target.value}))
-    }
-  return (
-   <div className="main" >
+      const handleChange = e=>{
+        setEvent(prev=>({...prev,[e.target.name]:e.target.value}))
+      }
+      useEffect(() => {
+              if(!isAuthenticated){
+                  window.location.href = "/";
+              }
+          }, [isAuthenticated]);
+      return (
+        <div className="main" >
     <div className="heading">
       Add/Update event
     </div>

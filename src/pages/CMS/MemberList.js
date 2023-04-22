@@ -3,37 +3,47 @@ import { Link ,useNavigate} from "react-router-dom";
 import '../../style/members.css'
  import { ReactComponent as PlusIcon } from '../../plus-icon.svg';
 import axios from 'axios';
- 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/cms/members/delete/${id}`);
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
- const MemberList = () => {
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 
-    const navigate = useNavigate();
-    const [members,setMembers] = useState([{}])
-    const [loading,setLoading] = useState(true)
+const handleDelete = async (id) => {
+  try {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/cms/members/delete/${id}`);
+    window.location.reload();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const MemberList = () => {
+  
+  const { isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [members,setMembers] = useState([{}])
+  const [loading,setLoading] = useState(true)
   useEffect(() => {
     setLoading(true)
       axios.get(`${process.env.REACT_APP_API_URL}/cms/members/get` , {withCredentials: true})
-        .then((res) => {
+      .then((res) => {
         setMembers(res.data.members)
         setLoading(false)
       }
       )
       
-   }, [])
-
-   
-  const handleEdit = (id) => {
-    try {
-      console.log("member_id" ,id);
-      navigate(`/cms/editMember/${id}`);
+    }, [])
+    
+    
+    useEffect(() => {
+        if(!isAuthenticated){
+            window.location.href = "/";
+        }
+    }, [isAuthenticated]);
+    
+    const handleEdit = (id) => {
+      try {
+        console.log("member_id" ,id);
+        navigate(`/cms/editMember/${id}`);
     } catch (err) {
       console.log(err);
     }
