@@ -6,6 +6,7 @@ import {useLocation , useParams,useNavigate} from "react-router-dom";
 import supabase from '../../supabase.config'
 import {AuthContext} from '../../context/Context'
 import {useContext} from 'react'
+import uploadGallery from '../../utils/gallery';
 
 
 axios.defaults.withCredentials = true;
@@ -22,15 +23,19 @@ axios.defaults.withCredentials = true;
     const [events, setEvents] = useState({});
     const [loading, setLoading] = useState(true);
     const [poster, setPoster] = useState(null);
+    const [galleryUrls, setGalleryUrls] = useState([]);
+    const [gallery , setGallery] = useState([]);
 
     const {eventId} = useParams()
 
     const handleSubmit= async (e) =>{
         e.preventDefault()  
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events} , {withCredentials: true})
+try{      const res = await axios.post(`${process.env.REACT_APP_API_URL}/cms/events/edit`,{event: events} , {withCredentials: true})
        console.log("edited event : " , res)
           
             const {_ , error} = await supabase.storage.from('events').upload(`${eventId}/poster.jpg`, poster , {upsert: true})
+            await uploadGallery(gallery, eventId);
+
             if(error){
               console.log(error)
             }
@@ -39,11 +44,29 @@ axios.defaults.withCredentials = true;
             }
 
 
+}
+catch(err){
+    console.log(err)  
+
+   }
     }
     
     const handleChange = e=>{
     setEvents(prev=>({...prev,[e.target.name]:e.target.value}))
     }
+
+    const deleteImage = async (id) => {
+
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/cms/events/delete-image/${id}`)
+      if(res.data.success){
+        alert("Image deleted successfully")
+      
+    }
+    else{
+      alert("Error deleting image")
+    }
+    }
+
 
     useEffect(() => {
         setLoading(true);
@@ -52,7 +75,9 @@ axios.defaults.withCredentials = true;
         await axios.get(`${process.env.REACT_APP_API_URL}/cms/events/get/${eventId}`)
         .then((response) => {
             
+            console.log(response.data.event);
             setEvents(response.data.event.details);
+            setGalleryUrls(response.data.event.galleryUrls);
         })
         .catch((error) => {
             console.log(error);
@@ -110,6 +135,11 @@ axios.defaults.withCredentials = true;
       <input type="file" id="image" name="image" onChange={(e)=>{
         setPoster(e.target.files[0])
       }}/>
+      <input type="file" multiple ="multiple" name="gallery" onChange={
+        (e)=>{
+          setGallery(e.target.files)
+      }    }/>
+ 
         </div>
       
       </div>
@@ -122,6 +152,18 @@ axios.defaults.withCredentials = true;
       </div>
 
       <img src={events.poster_url} alt="" />
+
+      {
+        galleryUrls.length > 0 && galleryUrls.map((url,index)=>{
+          return (
+          <div>
+          <img src={url.image_url} alt="" key={index}/>
+          <button onClick={()=>deleteImage(url.id)}>Delete</button>
+          </div>
+          )
+        })
+      }
+
       
     </form>
     </div>
