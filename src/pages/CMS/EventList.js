@@ -7,6 +7,7 @@ import axios from 'axios';
 // import { FaPlus } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../context/Context";
+import { LoadingContext } from '../../context/Context';
 const handleDelete = async (id) => {
   try {
     
@@ -22,6 +23,7 @@ const EventList = () => {
   
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
+  const {authLoading} = useContext(LoadingContext);
   
   
   const [eventlist,setEventlist] = useState([{}])
@@ -37,10 +39,10 @@ const EventList = () => {
       
     }, [])
     useEffect(() => {
-    if(!isAuthenticated){
+    if(!isAuthenticated && !authLoading){
                 window.location.href = "/";
             }
-        }, [isAuthenticated]);
+        }, []);
     
     //  const[events,setEvents]=useState([])
     

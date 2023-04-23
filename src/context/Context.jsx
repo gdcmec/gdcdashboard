@@ -7,33 +7,26 @@ export const LoadingContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null)
-  const [authLoading, setAuthLoading] = useState(false)
+  const [authLoading, setAuthLoading] = useState(true)
 
 
   useEffect(() => {
     // Perform the API call to check the authentication status
     const fetchAuthenticationStatus = async () => {
-        
+      
+      setAuthLoading(true)
        try{
-        setAuthLoading(true)
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/cms/admins/is-authenticated`, { withCredentials: true })
 
         if(response.data.authenticated){
         console.log("isAuthenticated", response.data.authenticated)
     
         setIsAuthenticated(true)
-        setAuthLoading(false)
 
-        if(window.location.pathname === "/"){
-            return window.location.href = "/dashboard"
-        }
         
        }
        else{
-        setIsAuthenticated(false)
-        setAuthLoading(false)
-        if(window.location.pathname != "/")
-            return window.location.href = "/";
+         setIsAuthenticated(false)
       }
     }
          catch(err){
@@ -42,14 +35,14 @@ export const AuthProvider = ({ children }) => {
                 return ;
             }
             console.log(err)
-            setIsAuthenticated(false)
             setAuthLoading(false)
+            setIsAuthenticated(false)
             return window.location.href = "/";
          }
 
 }
    
-     fetchAuthenticationStatus()
+     fetchAuthenticationStatus().then(() => setAuthLoading(false))
   }, [])
 
   return (
