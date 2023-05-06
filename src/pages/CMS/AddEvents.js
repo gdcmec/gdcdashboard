@@ -31,10 +31,8 @@ import { AuthContext } from "../../context/Context";
         console.log(error)
       }
       else{
-        console.log(data.path)
-        const publicUrl = supabase.storage.from('events').getPublicUrl(data.path)
-        console.log(publicUrl)
-          setPoster_url(publicUrl.data.publicUrl)
+            console.log("added event");
+            window.location.href = "/cms/events";
         }
         
       }
@@ -86,12 +84,11 @@ import { AuthContext } from "../../context/Context";
         <label for="image" className="img">Image:</label>
       <input type="file" id="image" name="poster_file" onChange={(e)=>
         setPoster(e.target.files[0])
-  }/>
+       }/>
         </div>
       
       </div>
 
-      <img src = {poster_url} alt = "poster_url" />      
 
 
     </div>

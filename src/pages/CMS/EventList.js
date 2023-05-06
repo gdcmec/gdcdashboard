@@ -11,8 +11,14 @@ import { LoadingContext } from '../../context/Context';
 const handleDelete = async (id) => {
   try {
     
-    await axios.delete(`${process.env.REACT_APP_API_URL}/cms/events/delete/${id}` , { withCredentials: true});
-    window.location.reload();
+     axios.delete(`${process.env.REACT_APP_API_URL}/cms/events/delete/${id}` , { withCredentials: true}).then((res) => {
+        window.location.reload();
+      }
+      ).catch((err) => {
+        console.log(err);
+      }
+      )
+    
   } catch (err) {
     console.log(err);
   }

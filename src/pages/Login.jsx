@@ -16,7 +16,7 @@ function Login() {
             if(res.data.success)
             {
                 console.log(res.data);
-                window.location.href = "/dashboard";
+                window.location.href = "/cms/events";
             }
 
         })
