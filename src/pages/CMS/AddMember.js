@@ -13,6 +13,7 @@ import { AuthContext } from "../../context/Context";
     
     const navigate = useNavigate()
     const [member,setMember]=useState({
+      team_name: "Design",
     })
     
     const [photo,setPhoto]=useState(null)
